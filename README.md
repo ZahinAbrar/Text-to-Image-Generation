@@ -1,3 +1,8 @@
+![FastAPI](https://img.shields.io/badge/framework-FastAPI-green)
+![Docker](https://img.shields.io/badge/container-docker-blue)
+![Kubernetes](https://img.shields.io/badge/deployment-kubernetes-success)
+![Transformers](https://img.shields.io/badge/model-HuggingFace-orange)
+
 # Diffusion API with FastAPI, Docker, and Kubernetes
 
 ## 🧠 Overview
