@@ -1,25 +1,102 @@
-![FastAPI](https://img.shields.io/badge/framework-FastAPI-green)
-![Docker](https://img.shields.io/badge/container-docker-blue)
-![Kubernetes](https://img.shields.io/badge/deployment-kubernetes-success)
-![Transformers](https://img.shields.io/badge/model-HuggingFace-orange)
 
-# Diffusion API with FastAPI, Docker, and Kubernetes
+# 🧪 Diffusion API with FastAPI, Docker, and Kubernetes
+
+![FastAPI](https://img.shields.io/badge/framework-FastAPI-green)
+![Docker](https://img.shields.io/badge/container-Docker-blue)
+![Kubernetes](https://img.shields.io/badge/deployment-Kubernetes-success)
+![Transformers](https://img.shields.io/badge/model-HuggingFace-orange)
+![License](https://img.shields.io/badge/license-MIT-lightgrey)
+
+---
 
 ## 🧠 Overview
-This project implements a complete full-stack machine learning deployment pipeline using a diffusion model. Specifically, it uses the Stable Diffusion v1-4 model from Hugging Face to generate high-quality images from text prompts. The core ML task is served using a FastAPI web framework that exposes a `/generate` endpoint. When a POST request is sent with a prompt like `"a futuristic robot reading a book under a tree"`, the API returns a generated image as a PNG stream.
 
-The main goal of the project is not just to demonstrate image generation, but also to show how ML models can be deployed, scaled, and made reproducible using Docker and Kubernetes. The app is fully containerized and can be built using a Dockerfile that installs the necessary Python dependencies and launches a Uvicorn server. The Docker image can run on any system with Docker installed, ensuring that the model behaves the same way in every environment.
+This project implements a **full-stack ML deployment pipeline** using a Stable Diffusion model. It demonstrates how to serve a generative model using **FastAPI**, containerize it with **Docker**, and scale it with **Kubernetes**.
 
-Beyond containerization, the project also includes a Kubernetes deployment setup. This includes:
-- A `Deployment` with two replicas for serving traffic concurrently
-- A `Service` configured as a LoadBalancer to expose the API
-- A `Horizontal Pod Autoscaler (HPA)` that dynamically scales the number of pods based on CPU usage
+The core endpoint `/generate` receives a text prompt like `"a futuristic robot reading a book under a tree"` and returns the generated image in PNG format.
 
-This infrastructure ensures that the model is not only accessible over the internet but also highly available and scalable under load. This makes the project architecture suitable for production-grade image generation services or as a backend for creative applications like text-to-image tools or AI art generation platforms.
+---
 
-While the current configuration runs in a limited environment such as Google Colab, it is designed to be portable to high-performance GPU-backed cloud platforms like AWS, GCP, or Azure. The same architecture could also scale to run large language models or generative pipelines using vLLM or DeepSpeed-MII with minimal changes.
+## 🔧 Tech Stack
+
+- **Model**: Stable Diffusion v1-4 (via Hugging Face Transformers)
+- **API Framework**: FastAPI
+- **Containerization**: Docker
+- **Orchestration**: Kubernetes
+- **Serving**: Uvicorn server with autoscaling setup
+
+---
+
+## 📦 Features
+
+- 🌐 Exposes an endpoint `/generate` for real-time image generation
+- 📦 Fully containerized with a reproducible Dockerfile
+- ☁️ Cloud-ready and GPU-portable (GCP, AWS, Azure)
+- 📈 Auto-scalable using Kubernetes HPA
+- ⚙️ Easily replaceable with vLLM, DeepSpeed-MII, or other models
+
+---
+
+## 🧪 API Endpoint
+
+### POST `/generate`
+
+**Input**:
+```json
+{
+  "prompt": "a futuristic robot reading a book under a tree"
+}
+```
+
+**Output**:
+- PNG image stream in response
+
+---
 
 ## 🚀 Run Locally with Docker
+
 ```bash
 docker build -t diffusion-api .
 docker run -p 8000:8000 diffusion-api
+```
+
+---
+
+## ☸️ Kubernetes Deployment
+
+Includes the following components:
+- `Deployment.yaml` (2 replicas for availability)
+- `Service.yaml` (LoadBalancer for external access)
+- `HPA.yaml` (auto-scales pods based on CPU usage)
+
+```bash
+kubectl apply -f k8s/
+```
+
+---
+
+## 📂 Project Structure
+
+```
+📁 diffusion-api/
+├── app/
+│   └── main.py             # FastAPI app definition
+├── Dockerfile              # Docker build instructions
+├── requirements.txt        # Python dependencies
+├── k8s/
+│   ├── deployment.yaml
+│   ├── service.yaml
+│   └── hpa.yaml
+```
+
+---
+
+## 📌 Note
+
+Though designed and demoed in Google Colab, the project is fully portable and production-ready. Adapt to your own infrastructure or integrate with other generative models.
+
+---
+
+## 📝 License
+
+This project is released under the [MIT License](LICENSE).
