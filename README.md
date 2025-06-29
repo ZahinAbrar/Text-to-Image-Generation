@@ -48,8 +48,8 @@ The core endpoint `/generate` receives a text prompt like `"a futuristic robot r
 }
 ```
 
-**Output**:
-- PNG image stream in response
+< **Output**:
+    - PNG image stream in response >
 
 ---
 
